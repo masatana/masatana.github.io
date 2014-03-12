@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Reference: http://syossan.hateblo.jp/entry/20101116/1289921385-->
 <html lang="ja">
 <head>
   <meta charset="utf-8">
@@ -184,11 +183,18 @@ function clearRows(map) {
 function clean() {
   ctx.clearRect(0, 0, 200, 400);
 }
-  </script>
+</script>
 </head>
 <body onload="load()" onkeydown="key(event.keyCode)">
-  <canvas id="target" style="border: 5px solid gray" width="200" height="400"></canvas>
-  <p><input type="button" value="paint" onclick="paint()" /></p>
-  <p><input type="button" value="clear" onclick="clean()" /></p>
+<article>
+  <section>
+    <canvas id="target" style="border: 5px solid gray" width="200" height="400"></canvas>
+    <p><input type="button" value="paint" onclick="paint()" /></p>
+    <p><input type="button" value="clear" onclick="clean()" /></p>
+  </section>
+  <section>
+    <p>このゲームは<a href="http://syossan.hateblo.jp/entry/20101116/1289921385">こちらのサイト</a>を参考にさせて頂きました</p>
+  </section>
+</article>
 </body>
 </html>
