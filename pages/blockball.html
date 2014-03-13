@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../css/common.css">
+  <script type="text/javascript">
+var ctx;
+var ball;
+var bars = [
+  [10, 10],
+  [10, 20],
+  [20, 10],
+  [20, 20]
+];
+var posx = 0;
+var map;
+var mapWidth = 100;
+var mapHeight = 200;
+
+function load() {
+var elemTarget = document.getElementById("target");
+ctx = elemTarget.getContext("2d");
+
+  map = [];
+  for (var y = 0; y < mapHeight; y++) {
+    map[y] = [];
+    for (var x = 0; x < mapWidth; x++) {
+      map[y][x] = 0;
+    }
+  }
+  startGame();
+}
+
+function startGame() {
+  ctx.clearRect(0, 0, 200, 400);
+  setBall();
+  setBars();
+  setInterval(move, 1);
+}
+
+function setBall() {
+}
+function setBars() {
+  return;
+}
+function move() {
+  ctx.fillStyle = "rgb(128, 128, 128)";
+  for (var y = 0; y < map.length; y++) {
+    for (var x = 0; x < map[y].length; x++) {
+      if (matrix[y][x]) {
+        ctx;// TODO ballにvector要素を持たせる
+      }
+    }
+  }
+}
+}
+  </script>
+</head>
+<body onload="load()" onkeydown="key(event.keyCode)">
+<article>
+  <section>
+    <canvas id="target" style="border: 5px solid gray" width="200" height="400"></canvas>
+  </section>
+</article>
+</body>
+</html>
