@@ -5,54 +5,108 @@
   <link rel="stylesheet" type="text/css" href="../css/common.css">
   <script type="text/javascript">
 var ctx;
-var ball;
-var bars = [
-  [10, 10],
-  [10, 20],
-  [20, 10],
-  [20, 20]
-];
+var ball = {
+  x: 0,
+  y: 0,
+  vector: {
+    x: 1,
+    y: 2
+  },
+  start: {
+    x: 100,
+    y: 150
+  },
+  is_start: true
+}
+var bar = {
+  x: 85,
+  y: 360
+};
+
 var posx = 0;
 var map;
-var mapWidth = 100;
-var mapHeight = 200;
+var mapWidth = 200;
+var mapHeight = 400;
 
 function load() {
-var elemTarget = document.getElementById("target");
-ctx = elemTarget.getContext("2d");
+  var elemTarget = document.getElementById("target");
+  ctx = elemTarget.getContext("2d");
 
   map = [];
   for (var y = 0; y < mapHeight; y++) {
     map[y] = [];
     for (var x = 0; x < mapWidth; x++) {
-      map[y][x] = 0;
-    }
-  }
-  startGame();
-}
-
-function startGame() {
-  ctx.clearRect(0, 0, 200, 400);
-  setBall();
-  setBars();
-  setInterval(move, 1);
-}
-
-function setBall() {
-}
-function setBars() {
-  return;
-}
-function move() {
-  ctx.fillStyle = "rgb(128, 128, 128)";
-  for (var y = 0; y < map.length; y++) {
-    for (var x = 0; x < map[y].length; x++) {
-      if (matrix[y][x]) {
-        ctx;// TODO ballにvector要素を持たせる
+      if (x == 0 || x == mapWidth - 1) {
+        map[y][x] = 1; /* Side Wall */
+      } else if (y == 0) {
+        map[y][x] = 2; /* Top Wall */
+      } else if (y == mapHeight - 1) {
+        map[y][x] = 3; /* Hell Bottom */
+      } else if ((bar.x <= x <= bar.x + 30) && (bar.y <= y <= bar.y + 20)) {
+        map[y][x] = 4; /* bar */
+      } else {
+        map[y][x] = 0; /* Nothing */
       }
     }
   }
+  setInterval(moveBall, 10);
 }
+
+function moveBall() {
+  ctx.clearRect(0, 0, 200, 400);
+  paintObj(ball, 5, 5, "rgb(128, 0, 0)");
+  paintObj(bar, 30, 20, "rgb(255, 0, 0");
+  if (ball.y >= mapHeight) {
+    ball.vector.y *= -1;
+  } else if(ball.y < 0) {
+    ball.vector.y *= -1;
+  } else if (ball.x < 0 || ball.x >= mapWidth) {
+    ball.vector.x *= -1;
+  }
+  if (ball.is_start) {
+    ball.x += ball.vector.x + ball.start.x;
+    ball.y += ball.vector.y + ball.start.y;
+    ball.is_start = false;
+  } else {
+    ball.x += ball.vector.x;
+    ball.y += ball.vector.y;
+  }
+}
+
+function paintObj(obj, x, y, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(obj.x, obj.y, x, y);
+}
+
+function check(bar) {
+  if (bar.x < 1 || bar.x >= mapWidth) {
+    return false;
+  }
+  return true;
+}
+
+
+function key(keyCode) {
+  switch (keyCode) {
+    case 39: /* right */
+      if (!check(bar)) {
+        return;
+      }
+      bar.x += 10;
+      break;
+    case 37: /* left */
+      if (!check(bar)) {
+        return;
+      }
+      bar.x -= 10;
+      break;
+    default:
+      return;
+  }
+  ctx.clearRect(0, 0, 200, 400);
+  paintObj(ball, 5, 5, "rgb(128, 0, 0)");
+  paintObj(bar, 30, 20, "rgb(255, 0, 0");
+
 }
   </script>
 </head>
