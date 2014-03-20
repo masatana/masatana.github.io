@@ -1,10 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>エントリーシート用ツール</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript">
+  <meta charset="UTF-8">
+  <title>エントリーシート用ツール</title>
+  <link rel="stylesheet" type="text/css" href="../css/common.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
 $(function() {
     $("textarea").bind("keydown keyup keypress change", function() {
       var thisValueLength = $(this).val().length;
@@ -24,20 +25,7 @@ function toComma() {
   target.value = modified;
 };
 
-</script>
-<style>
-body {
-  margin: 0;
-  background: #fff;
-  color: #555;
-}
-textarea {
-  width: 800px;
-  height: 500px;
-  border: 2px solid;
-  padding: 5px;
-}
-</style>
+  </script>
 </head>
 <body>
 <p class="count">0</p>
@@ -46,5 +34,6 @@ textarea {
 <button id="toDokuten" onclick="toDokuten()">全角カンマ→読点</button>
 <button id="toComma" onclick="toComma()">読点→全角カンマ</button>
 </div>
+<p><a href="http://black-flag.net/jquery/20120229-3696.html">こちらのサイト</a>を参考にさせて頂きました</p>
 </body>
 </html>
