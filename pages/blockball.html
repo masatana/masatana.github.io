@@ -20,7 +20,8 @@ var ball = {
 }
 var bar = {
   x: 85,
-  y: 360
+  y: 360,
+  is_moving: 0
 };
 
 var posx = 0;
@@ -42,8 +43,6 @@ function load() {
         map[y][x] = 2; /* Top Wall */
       } else if (y == mapHeight - 1) {
         map[y][x] = 3; /* Hell Bottom */
-      } else if ((bar.x <= x <= bar.x + 30) && (bar.y <= y <= bar.y + 20)) {
-        map[y][x] = 4; /* bar */
       } else {
         map[y][x] = 0; /* Nothing */
       }
@@ -62,6 +61,9 @@ function moveBall() {
     ball.vector.y *= -1;
   } else if (ball.x < 0 || ball.x >= mapWidth) {
     ball.vector.x *= -1;
+  } else if ((bar.y == ball.y) && (bar.x <= ball.x) && (ball.x <= bar.x + 30)) {
+    ball.vector.y *= -1;
+    ball.vector.x += bar.is_moving;
   }
   if (ball.is_start) {
     ball.x += ball.vector.x + ball.start.x;
@@ -93,14 +95,17 @@ function key(keyCode) {
         return;
       }
       bar.x += 10;
+      is_moving = 1;
       break;
     case 37: /* left */
       if (!check(bar)) {
         return;
       }
       bar.x -= 10;
+      is_moving = -1;
       break;
     default:
+      is_moving = 0;
       return;
   }
   ctx.clearRect(0, 0, 200, 400);

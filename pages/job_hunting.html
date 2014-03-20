@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>エントリーシート用ツール</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    $("textarea").bind("keydown keyup keypress change", function() {
+      var thisValueLength = $(this).val().length;
+      $(".count").html(thisValueLength);
+    });
+});
+function toDokuten() {
+  var target = document.getElementById("maintext");
+  var raw_text = target.value;
+  var modified = raw_text.replace(/，/g, "、").replace(/．/g, "。");
+  target.value = modified;
+};
+function toComma() {
+  var target = document.getElementById("maintext");
+  var raw_text = target.value;
+  var modified = raw_text.replace(/、/g, "，").replace(/。/g, "．");
+  target.value = modified;
+};
+
+</script>
+<style>
+body {
+  margin: 0;
+  background: #fff;
+  color: #555;
+}
+textarea {
+  width: 800px;
+  height: 500px;
+  border: 2px solid;
+  padding: 5px;
+}
+</style>
+</head>
+<body>
+<p class="count">0</p>
+<textarea id="maintext" name="inputarea"></textarea>
+<div>
+<button id="toDokuten" onclick="toDokuten()">全角カンマ→読点</button>
+<button id="toComma" onclick="toComma()">読点→全角カンマ</button>
+</div>
+</body>
+</html>
