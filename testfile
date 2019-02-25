@@ -1,5 +1,0 @@
-[centos@ip-172-24-103-82 ~]$ sudo -u hdfs hdfs fsck /tmp/hosts -locations -files -blocks
-Connecting to namenode via http://localhost:50070
-FSCK started by hdfs (auth:SIMPLE) from /127.0.0.1 for path /tmp/hosts at Fri Sep 22 06:25:33 UTC 2017
-/tmp/hosts 159 bytes, 1 block(s):  OK
-0. BP-1756701033-172.24.103.82-1506042825462:blk_1073741830_1006 len=159 Live_repl=1 [DatanodeInfoWithStorage[127.0.0.1:50010,DS-a44ecaa1-5805-4458-9c07-07fb496bd362,DISK]]
